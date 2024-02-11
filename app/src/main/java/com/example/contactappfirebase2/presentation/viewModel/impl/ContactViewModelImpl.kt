@@ -18,6 +18,7 @@ class ContactViewModelImpl @Inject constructor(
 
     override val contactFlow = repository.contactDataFlow
     override val successFlow = MutableSharedFlow<String>(replay = 1, onBufferOverflow = BufferOverflow.DROP_LATEST)
+
     override val errorMessage: MutableSharedFlow<String> = repository.errorMessage
 
     override fun deleteContact(id: String) {

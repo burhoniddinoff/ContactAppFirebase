@@ -36,6 +36,7 @@ class AppRepository @Inject constructor() {
             contactDataFlow.tryEmit(data)
 //                Timber.tag("TTT").d("$data")
 
+
             // error message ->
 
         }
@@ -74,7 +75,8 @@ class AppRepository @Inject constructor() {
     }
 
     fun updateContact(data: ContactUIData): Flow<Result<Unit>> = callbackFlow {
-        fireStore.collection("test")
+        fireStore
+            .collection("test")
             .document(data.docID)
             .set(AddContact(data.fName, data.lName, data.phone))
             .addOnSuccessListener {
@@ -85,6 +87,4 @@ class AppRepository @Inject constructor() {
             }
         awaitClose()
     }
-
-
 }
