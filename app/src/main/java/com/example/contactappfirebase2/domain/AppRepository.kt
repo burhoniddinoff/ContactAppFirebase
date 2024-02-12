@@ -34,8 +34,6 @@ class AppRepository @Inject constructor() {
             }
 
             contactDataFlow.tryEmit(data)
-//                Timber.tag("TTT").d("$data")
-
 
             // error message ->
 
@@ -45,7 +43,6 @@ class AppRepository @Inject constructor() {
     fun addContact(addContact: AddContact): Flow<Result<Unit>> = callbackFlow {
         fireStore
             .collection("test")
-//            .document(UUID.randomUUID().toString())
             .document(System.currentTimeMillis().toString())
             .set(AddContact(addContact.fName, addContact.lName, addContact.phone))
             .addOnSuccessListener {
@@ -67,9 +64,9 @@ class AppRepository @Inject constructor() {
                 trySend(Result.failure(it))
                 Log.d("TTT", "Fail")
             }
-            .addOnCanceledListener {
-                Log.d("TTT", "on canceled")
-            }
+//            .addOnCanceledListener {
+//                Log.d("TTT", "on canceled")
+//            }
         awaitClose()
         Log.d("TTT", "delete contact")
     }
